@@ -147,6 +147,40 @@ This server, unlike the filesystem example in §4, is one **you write yourself**
 
 ---
 
+# ToolService MCP Tools
+
+```java
+package com.McpServer.McpServer;
+
+import org.springframework.ai.mcp.annotation.McpTool;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ToolService {
+
+    @McpTool(description = "This is used to book an appointment patient can book appointments using this method")
+    public String bookAppointment() {
+        return "Appointment Booked";
+    }
+
+    @McpTool(
+        description = "This method is used to check the if any given doctor is available and if"
+            + "the user ask for the appointment with specific doctor there is another tool should be called "
+            + "to see if the doctor is working in the hospital currently "
+    )
+    public String checkDoctor() {
+        return "Doctor aman is available on saturday and sunday in the morning, "
+            + "doctor Sama is available on monday and tuesday in the afternoon ";
+    }
+
+    @McpTool(description = "This tool is used to check is a doctor is working currectly in the hospital or not")
+    public String checkDoctorPresent() {
+        return "Raman,akash,usha,sama,aman";
+    }
+}
+```
+
+
 ## 6. Your `McpServer` (stdio) config, explained line by line
 
 ```yaml
